@@ -16,6 +16,7 @@ vehicles:
 
     length: 19.04    # source: https://dybas.de/dybas/gw/gw_f_1/g124.html
     mass: 25.00      # source: https://dybas.de/dybas/gw/gw_f_1/g124.html
+    
     load_limit: 59.0 # source: https://dybas.de/dybas/gw/gw_f_1/g124.html
     speed_limit: 100 # source: https://dybas.de/dybas/gw/gw_f_1/g124.html
 

@@ -183,6 +183,8 @@ function calculatePathResistance(CSs::Vector{Dict}, csId::Integer, s::Real, mass
     return pathResistance
 end #function calculatePathResistance
 
+test
+
 
 """
 calculate and return tractive and resisting forces for a support point
