@@ -6,7 +6,11 @@ trains:
   - name: "V 90 with 10 ore wagons of type Facs 124"  # (source: https://de.wikipedia.org/wiki/DB-Baureihe_V_90 and https://dybas.de/dybas/gw/gw_f_1/g124.html)
     id: Fr100
     formation: [DB_V90,Facs124,Facs124,Facs124,Facs124,Facs124,Facs124,Facs124,Facs124,Facs124,Facs124]
-
+    Brh_G_empty: 99 #source http://www.hammerschwinger.de/app/index.htm  #Screenshot of the Calculation: https://i.imgur.com/rjJXFqA.png 
+    Brh_G_full: 61 #source http://www.hammerschwinger.de/app/index.htm  #Screenshot of the Calculation: https://i.imgur.com/u0bBMCk.png
+    #source for braking weight of the Facs124 used in the calculation app: https://zusiwiki.echoray.de/wiki/Sammlung_von_Bremsgewichten#Bremsgewichte
+    #todo: Brh für Bremsstellung P
+    Brakingmodi: normal #falls noch eine Notbremsung imoplement iert werden soll (fehlt noch bei anderne Zügen)
 
 vehicles:
   - name: "Facs 124"  # source: https://dybas.de/dybas/gw/gw_f_1/g124.html

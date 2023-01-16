@@ -6,6 +6,7 @@ trains:
   - name: "Intercity 2 (Traxx P160 AC2 + double deck coaches)"  # (source: https://de.wikipedia.org/wiki/Bombardier_Twindexx_Vario#Intercity_2 and https://de.wikipedia.org/wiki/Intercity_2_(Deutsche_Bahn))
     id: IC1011
     formation: [Bombardier_Traxx_2_P160,DABpza68,DABpza68,DABpza68,DABpza68,DABpza668]
+    Brh_R_Mg: 201 #source http://www.hammerschwinger.de/app/index.htm  #calculation:  https://i.imgur.com/0dyRFT0.png and https://i.imgur.com/veaoxcT.png
 
 vehicles:
   - name: "DBpbzfa 668.2"  # source: https://de.wikipedia.org/wiki/Bombardier_Twindexx_Vario
