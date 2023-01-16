@@ -24,6 +24,11 @@ vehicles:
     rolling_resistance: 0.715 # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 153 for "Doppelstockgliederzüge"
     air_resistance: 3.64      # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 153 for "Doppelstockgliederzüge"
 
+    #Magnetic brake wont be considered, because they only come to use for a Fast Breaking or an Emergency Breaking
+    #this vehicle has an extra brake only for the purpose of shunting, so its also not considered
+    braking_system: [air_brake_disc,electrical_brake_disk] #source https://hellertal.startbilder.de/bild/Deutschland~Wagen~Steuerwagen/760505/klimatisierter-2-klasse-ic2-doppelstock-steuerwagen-mit-mehrzweckabteil.html
+ 
+
   - name: "DApza 687.2 and DBpza 682.2"  # source: https://de.wikipedia.org/wiki/Bombardier_Twindexx_Vario
     id: DABpza68
     UUID: 45e83b27-7952-4f34-ad8d-1affcacfe6f2
@@ -40,6 +45,9 @@ vehicles:
     rolling_resistance: 0.715 # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 153 for "Doppelstockgliederzüge"
     air_resistance: 3.64      # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 153 for "Doppelstockgliederzüge"
 
+    
+    braking_system: [air_brake_disc, electrical_brake_disk] #source https://www.deutsche-reisezugwagen.de/wagendaten/687-brye-dapza/
+
   - name: "Bombardier Traxx 2 (P160)"  # source: https://en.wikipedia.org/wiki/Bombardier_TRAXX#TRAXX_P160_AC2
     id: Bombardier_Traxx_2_P160
     UUID: bc62a03e-9ec9-41f2-913c-6b315e86cc61
@@ -55,6 +63,9 @@ vehicles:
     rotation_mass: 1.09   # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for the traction unit
     base_resistance: 2.5  # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 151 for "4-achsige Diesellokomot." -> 2.2 ‰ to 3.5 ‰
     air_resistance: 6.0 # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 151 for "4-achsig, eckige Kopfform" with "Stromabnehmer" -> 5000 N to 6000 N; modified for the used formula
+
+    #the air brake is only for additional usage, the electrical brake is preffered because of a fast and simultaneous tightening of the disc brakes 
+    braking_system: [air_brake_disc, electric_brake_disk] #source: https://de.wikipedia.org/wiki/Bombardier_Traxx#Bremsen
 
     tractive_effort:
       - [0.0, 300000]
