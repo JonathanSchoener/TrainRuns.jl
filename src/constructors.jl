@@ -309,6 +309,9 @@ function Train(file, type = :YAML)
     f_Rw1         = 0             # coefficient for the consist's resistance to rolling (in ‰)
     f_Rw2         = 0             # coefficient for the consist's air resistance (in ‰)
     F_v_pairs     = []            # [v in m/s, F_T in N]
+    Brakingmodel  = :Lambda       # or Gamma
+    brakingEffort = []            # [v in m/s, B_T in N]
+    Brh           = 0             # if Lambda
 
     ## load from file
     if type == :YAML
@@ -601,6 +604,14 @@ function Train(file, type = :YAML)
         ξ_train = ξ_loco
     end
 
+    Brakingmodel = train["Brakingmodel"]
+
+    if Brakingmodel=="Lambda"
+        train["Brh"]
+
+
+
+
     Train(
         name, id, uuid, length,
         m_train_full, m_td, m_tc, m_car_full,
@@ -608,7 +619,9 @@ function Train(file, type = :YAML)
         transportType, v_limit,
         a_braking,
         f_Rtd0, f_Rtc0, f_Rt2, f_Rw0, f_Rw1, f_Rw2,
-        F_v_pairs
+        F_v_pairs,
+        brakingEffort,
+        Brakingmodel
     )
 
 end #function Train() # outer constructor

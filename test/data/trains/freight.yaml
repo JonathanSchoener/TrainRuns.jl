@@ -6,11 +6,12 @@ trains:
   - name: "V 90 with 10 ore wagons of type Facs 124"  # (source: https://de.wikipedia.org/wiki/DB-Baureihe_V_90 and https://dybas.de/dybas/gw/gw_f_1/g124.html)
     id: Fr100
     formation: [DB_V90,Facs124,Facs124,Facs124,Facs124,Facs124,Facs124,Facs124,Facs124,Facs124,Facs124]
-    Brh_G_empty: 99 #source http://www.hammerschwinger.de/app/index.htm  #Screenshot of the Calculation: https://i.imgur.com/rjJXFqA.png 
-    Brh_G_full: 61 #source http://www.hammerschwinger.de/app/index.htm  #Screenshot of the Calculation: https://i.imgur.com/u0bBMCk.png
+     #Brh_empty: 99 #Bremsstellung G #source http://www.hammerschwinger.de/app/index.htm  #Screenshot of the Calculation: https://i.imgur.com/rjJXFqA.png 
+    #Brh_full: 61 #Bremsstellung G #source http://www.hammerschwinger.de/app/index.htm  #Screenshot of the Calculation: https://i.imgur.com/u0bBMCk.png
+    Brh: 99
     #source for braking weight of the Facs124 used in the calculation app: https://zusiwiki.echoray.de/wiki/Sammlung_von_Bremsgewichten#Bremsgewichte
-    #todo: Brh für Bremsstellung P
-    Brakingmodi: normal #falls noch eine Notbremsung imoplement iert werden soll (fehlt noch bei anderne Zügen)
+    #BrakePosition: G oder P aber bereits in Brh mit einbezogen
+    Brakingmodel: Lambda 
 
 vehicles:
   - name: "Facs 124"  # source: https://dybas.de/dybas/gw/gw_f_1/g124.html
@@ -20,6 +21,7 @@ vehicles:
     vehicle_type: freight # "freight", "passenger", "traction unit" or "multiple unit"
     braking_type: air_brake_block #the braking force is applied via a pressurized air duct at the block/wheel surface #source: https://gueterwagenkatalog.dbcargo.com/katalog/nach-gattung/f-offene-schuettgutwagen/Facs-124-5832362
     diameter_brake_cylinder: 406 #in mm, only one
+  
 
     length: 19.04    # source: https://dybas.de/dybas/gw/gw_f_1/g124.html
     mass: 25.00      # source: https://dybas.de/dybas/gw/gw_f_1/g124.html

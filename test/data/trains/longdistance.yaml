@@ -6,7 +6,8 @@ trains:
   - name: "Intercity 2 (Traxx P160 AC2 + double deck coaches)"  # (source: https://de.wikipedia.org/wiki/Bombardier_Twindexx_Vario#Intercity_2 and https://de.wikipedia.org/wiki/Intercity_2_(Deutsche_Bahn))
     id: IC1011
     formation: [Bombardier_Traxx_2_P160,DABpza68,DABpza68,DABpza68,DABpza68,DABpza668]
-    Brh_R_Mg: 201 #source http://www.hammerschwinger.de/app/index.htm  #calculation:  https://i.imgur.com/0dyRFT0.png and https://i.imgur.com/veaoxcT.png
+    Brakingmodel: Lambda 
+    Brh: 201 #source http://www.hammerschwinger.de/app/index.htm  #calculation:  https://i.imgur.com/0dyRFT0.png and https://i.imgur.com/veaoxcT.png
 
 vehicles:
   - name: "DBpbzfa 668.2"  # source: https://de.wikipedia.org/wiki/Bombardier_Twindexx_Vario
@@ -47,7 +48,7 @@ vehicles:
     air_resistance: 3.64      # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 153 for "Doppelstockgliederzüge"
 
     
-    braking_system: [air_brake_disc, electrical_brake_disk] #source https://www.deutsche-reisezugwagen.de/wagendaten/687-brye-dapza/
+    braking_system: air_brake_disc #source https://www.deutsche-reisezugwagen.de/wagendaten/687-brye-dapza/
 
   - name: "Bombardier Traxx 2 (P160)"  # source: https://en.wikipedia.org/wiki/Bombardier_TRAXX#TRAXX_P160_AC2
     id: Bombardier_Traxx_2_P160
@@ -66,7 +67,7 @@ vehicles:
     air_resistance: 6.0 # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 151 for "4-achsig, eckige Kopfform" with "Stromabnehmer" -> 5000 N to 6000 N; modified for the used formula
 
     #the air brake is only for additional usage, the electrical brake is preffered because of a fast and simultaneous tightening of the disc brakes 
-    braking_system: [air_brake_disc, electric_brake_disk] #source: https://de.wikipedia.org/wiki/Bombardier_Traxx#Bremsen
+    braking_system: [air_brake_disc, electrical_brake] #source: https://de.wikipedia.org/wiki/Bombardier_Traxx#Bremsen
 
     tractive_effort:
       - [0.0, 300000]

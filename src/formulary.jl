@@ -200,7 +200,7 @@ function brakingDistance(v_start::Real, v_end::Real, a_braking::Real, approxLeve
     return max(0.0, ceil(s_braking, digits= approxLevel +1))         # ceil is used to be sure that the train stops at s_exit in spite of rounding errors
 end #function brakingDistance
 
-function brakingStartVelocity(v_end::Real, a_braking::Real, s_braking::Real, approxLevel::Integer)
+function brakingStartVelocity(v_end::Real, a_braking::Real, s_braking::Real, approxLevel::Integer) #Wende S.263
     # equation is based on [Wende:2003, page 37]
 
     # v_end: target velocity at the end of braking (in m/s)

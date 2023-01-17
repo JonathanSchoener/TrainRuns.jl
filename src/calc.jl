@@ -160,6 +160,10 @@ function calculateTractiveEffort(v::AbstractFloat, tractiveEffortVelocityPairs::
 end #function calculateTractiveEffort
 
 
+function calculateBrakingEffort()
+
+end
+
 """
 calculate and return the path resistance dependend on the trains position and mass model
 """
