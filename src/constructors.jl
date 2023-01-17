@@ -605,6 +605,18 @@ function Train(file, type = :YAML)
     end
 
     Brakingmodel = train["Brakingmodel"]
+    Brh = train["Brh"]
+    V0 = F_v_pairs[80,:]
+    println(V0)
+
+
+
+
+    haskey(train, "braking_effort")    ? B_v_pairs = loco["braking_effort"] : B_v_pairs = [ [0.0, m_td * g * μ],[v_limit*3.6, m_td * g * μ] ]
+    F_v_pairs = reduce(hcat,F_v_pairs)'       # convert to matrix
+    F_v_pairs[:,1] ./= 3.6                    # convert km/h to m/s
+    F_v_pairs = tuple.(eachcol(F_v_pairs)...) # convert each row to tuples
+
 
     if Brakingmodel=="Lambda"
         train["Brh"]
@@ -620,7 +632,7 @@ function Train(file, type = :YAML)
         a_braking,
         f_Rtd0, f_Rtc0, f_Rt2, f_Rw0, f_Rw1, f_Rw2,
         F_v_pairs,
-        brakingEffort,
+        B_v_pairs,
         Brakingmodel
     )
 

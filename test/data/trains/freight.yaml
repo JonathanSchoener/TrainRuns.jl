@@ -12,6 +12,8 @@ trains:
     #source for braking weight of the Facs124 used in the calculation app: https://zusiwiki.echoray.de/wiki/Sammlung_von_Bremsgewichten#Bremsgewichte
     #BrakePosition: G oder P aber bereits in Brh mit einbezogen
     Brakingmodel: Lambda 
+    braking_type: air_brake_block #the braking force is applied via a pressurized air duct at the block/wheel surface #source: https://gueterwagenkatalog.dbcargo.com/katalog/nach-gattung/f-offene-schuettgutwagen/Facs-124-5832362
+    diameter_brake_cylinder: 406 #in mm, only one
 
 vehicles:
   - name: "Facs 124"  # source: https://dybas.de/dybas/gw/gw_f_1/g124.html
@@ -19,8 +21,7 @@ vehicles:
     UUID: 30abe88d-5be7-4c9c-b6a2-61c6b0e9f9bc
     picture: https://dybas.de/dybas/gw/gw_f_1/image/124_0042.jpg
     vehicle_type: freight # "freight", "passenger", "traction unit" or "multiple unit"
-    braking_type: air_brake_block #the braking force is applied via a pressurized air duct at the block/wheel surface #source: https://gueterwagenkatalog.dbcargo.com/katalog/nach-gattung/f-offene-schuettgutwagen/Facs-124-5832362
-    diameter_brake_cylinder: 406 #in mm, only one
+    
   
 
     length: 19.04    # source: https://dybas.de/dybas/gw/gw_f_1/g124.html
@@ -38,7 +39,7 @@ vehicles:
     picture: https://commons.wikimedia.org/wiki/File:DB_294_-_594_side_view.jpg
     vehicle_type: traction unit # "freight", "passenger", "traction unit" or "multiple unit"
     power_type: diesel          # "diesel", "electric", or "steam"
-    braking_type: air_brake_block  #the braking force is applied via a pressurized air duct at the block/wheel surface #source: https://de.wikipedia.org/wiki/DB-Baureihe_V_90
+    #braking_type: air_brake_block  #the braking force is applied via a pressurized air duct at the block/wheel surface #source: https://de.wikipedia.org/wiki/DB-Baureihe_V_90
 
     length: 14.32   # source: https://de.wikipedia.org/wiki/DB-Baureihe_V_90
     mass: 80        # source: https://de.wikipedia.org/wiki/DB-Baureihe_V_90
