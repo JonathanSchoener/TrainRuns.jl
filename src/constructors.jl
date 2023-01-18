@@ -604,10 +604,12 @@ function Train(file, type = :YAML)
         ξ_train = ξ_loco
     end
 
+
+    
     Brakingmodel = train["Brakingmodel"]
-    Brh = train["Brh"]
-    V0 = F_v_pairs[80,:]
-    println(V0)
+    Brh = train.data["Brh"]
+    V0 = loco.data("speed_limit")
+
 
 
 

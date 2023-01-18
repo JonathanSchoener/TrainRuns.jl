@@ -14,6 +14,7 @@ trains:
     Brakingmodel: Lambda 
     braking_type: air_brake_block #the braking force is applied via a pressurized air duct at the block/wheel surface #source: https://gueterwagenkatalog.dbcargo.com/katalog/nach-gattung/f-offene-schuettgutwagen/Facs-124-5832362
     diameter_brake_cylinder: 406 #in mm, only one
+    brakinglevel: 29
 
 vehicles:
   - name: "Facs 124"  # source: https://dybas.de/dybas/gw/gw_f_1/g124.html
