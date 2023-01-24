@@ -7,6 +7,7 @@ trains:
     id: RB50-1
     formation: [DB_BR_642]
     Brakingmodel: Lambda
+    braking_type: air_brake_disk
     Brh: 0
 
 vehicles:

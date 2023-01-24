@@ -312,6 +312,7 @@ function Train(file, type = :YAML)
     Brakingmodel  = :Lambda       # or Gamma
     brakingEffort = []            # [v in m/s, B_T in N]
     Brh           = 0             # if Lambda
+    braking_system= :air_brake_disk # dfs
 
     ## load from file
     if type == :YAML
@@ -605,14 +606,11 @@ function Train(file, type = :YAML)
     end
 
 
-    
-    Brakingmodel = train["Brakingmodel"]
+     
     Brh = train.data["Brh"]
     V0 = loco.data("speed_limit")
 
-
-
-
+    calculateBrakingEffort(braking_system, v_limit, Brakingmodel) := B_v_pairs #entweder die Berechnung oder über untere
 
     haskey(train, "braking_effort")    ? B_v_pairs = loco["braking_effort"] : B_v_pairs = [ [0.0, m_td * g * μ],[v_limit*3.6, m_td * g * μ] ]
     F_v_pairs = reduce(hcat,F_v_pairs)'       # convert to matrix
@@ -623,7 +621,7 @@ function Train(file, type = :YAML)
     if Brakingmodel=="Lambda"
         train["Brh"]
 
-
+    end
 
 
     Train(
