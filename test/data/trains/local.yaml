@@ -6,6 +6,9 @@ trains:
   - name: Regional Train
     id: RB50-1
     formation: [DB_BR_642]
+    Brakingmodel: Lambda
+    braking_type: air_brake_disk
+    Brh: 0
 
 vehicles:
   - name: Siemens Desiro Classic # source: https://de.wikipedia.org/wiki/Siemens_Desiro_Classic

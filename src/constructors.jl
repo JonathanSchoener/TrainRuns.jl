@@ -309,6 +309,10 @@ function Train(file, type = :YAML)
     f_Rw1         = 0             # coefficient for the consist's resistance to rolling (in ‰)
     f_Rw2         = 0             # coefficient for the consist's air resistance (in ‰)
     F_v_pairs     = []            # [v in m/s, F_T in N]
+    Brakingmodel  = :Lambda       # or Gamma
+    brakingEffort = []            # [v in m/s, B_T in N]
+    Brh           = 0             # if Lambda
+    braking_system= :air_brake_disk # dfs
 
     ## load from file
     if type == :YAML
@@ -601,6 +605,25 @@ function Train(file, type = :YAML)
         ξ_train = ξ_loco
     end
 
+
+     
+    Brh = train.data["Brh"]
+    V0 = loco.data("speed_limit")
+
+    calculateBrakingEffort(braking_system, v_limit, Brakingmodel) := B_v_pairs #entweder die Berechnung oder über untere
+
+    haskey(train, "braking_effort")    ? B_v_pairs = loco["braking_effort"] : B_v_pairs = [ [0.0, m_td * g * μ],[v_limit*3.6, m_td * g * μ] ]
+    F_v_pairs = reduce(hcat,F_v_pairs)'       # convert to matrix
+    F_v_pairs[:,1] ./= 3.6                    # convert km/h to m/s
+    F_v_pairs = tuple.(eachcol(F_v_pairs)...) # convert each row to tuples
+
+
+    if Brakingmodel=="Lambda"
+        train["Brh"]
+
+    end
+
+
     Train(
         name, id, uuid, length,
         m_train_full, m_td, m_tc, m_car_full,
@@ -608,7 +631,9 @@ function Train(file, type = :YAML)
         transportType, v_limit,
         a_braking,
         f_Rtd0, f_Rtc0, f_Rt2, f_Rw0, f_Rw1, f_Rw2,
-        F_v_pairs
+        F_v_pairs,
+        B_v_pairs,
+        Brakingmodel
     )
 
 end #function Train() # outer constructor

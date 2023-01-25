@@ -57,4 +57,9 @@ struct Train
     # tractive effort as pairs of speed and tractive effort
     tractiveEffort::Vector{Tuple{Real, Real}}   # [v in m/s, F_T in N]
 
+    #braking parameters
+    brakingEffort::Vector{Tuple{Real, Real}}   #  [v in m/s, F_B in N]
+    Brakingmodel::String
+    #todo: formal anpassen wie das Objekt Train geladen wird
+
 end #struct Train
