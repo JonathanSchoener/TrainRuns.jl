@@ -310,9 +310,10 @@ function Train(file, type = :YAML)
     f_Rw2         = 0             # coefficient for the consist's air resistance (in ‰)
     F_v_pairs     = []            # [v in m/s, F_T in N]
     Brakingmodel  = :Lambda       # or Gamma
-    brakingEffort = []            # [v in m/s, B_T in N]
+    BrakingEffort = []            # [v in m/s, B_T in N]
     Brh           = 0             # if Lambda
     braking_system= :air_brake_disk # dfs
+    
 
     ## load from file
     if type == :YAML
@@ -610,12 +611,12 @@ function Train(file, type = :YAML)
     Brh = train.data["Brh"]
     V0 = loco.data("speed_limit")
 
-    calculateBrakingEffort(braking_system, v_limit, Brakingmodel) := B_v_pairs #entweder die Berechnung oder über untere
+    calculateBrakingEffort(braking_system, v_limit, Brakingmodel) := BrakingEffort #entweder die Berechnung oder über untere
 
-    haskey(train, "braking_effort")    ? B_v_pairs = loco["braking_effort"] : B_v_pairs = [ [0.0, m_td * g * μ],[v_limit*3.6, m_td * g * μ] ]
-    F_v_pairs = reduce(hcat,F_v_pairs)'       # convert to matrix
-    F_v_pairs[:,1] ./= 3.6                    # convert km/h to m/s
-    F_v_pairs = tuple.(eachcol(F_v_pairs)...) # convert each row to tuples
+    haskey(train, brakingEffort)    ? B_v_pairs = BrakingEffort: B_v_pairs = [ [0.0, a_braking * m_train_empty],[v_limit*3.6, a_braking * m_train_empty] ]
+    B_v_pairs = reduce(hcat,B_v_pairs)'       # convert to matrix
+    B_v_pairs[:,1] ./= 3.6                    # convert km/h to m/s
+    B_v_pairs = tuple.(eachcol(B_v_pairs)...) # convert each row to tuples
 
 
     if Brakingmodel=="Lambda"

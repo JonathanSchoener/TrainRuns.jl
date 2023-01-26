@@ -161,10 +161,11 @@ end #function calculateTractiveEffort
 
 
 function calculateBrakingEffort(a_system::String, v::AbstractFloat, B_modell = "String")
-if a_system == "air_brake_disk" || B_modell == Lambda
+ if a_system == "air_brake_disk" || B_modell == Lambda
 
     v_ende = v 
-
+    
+ return BrakingEffortVelociyPairs[end][2]
 end
 
 """
