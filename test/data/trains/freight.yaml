@@ -10,11 +10,9 @@ trains:
     #Brh_full: 61 #Bremsstellung G #source http://www.hammerschwinger.de/app/index.htm  #Screenshot of the Calculation: https://i.imgur.com/u0bBMCk.png
     Brh: 99
     #source for braking weight of the Facs124 used in the calculation app: https://zusiwiki.echoray.de/wiki/Sammlung_von_Bremsgewichten#Bremsgewichte
-    #BrakePosition: G oder P aber bereits in Brh mit einbezogen
+    BrakePosition: G/P/R #aber bereits in Brh mit einbezogen (Brh wird aktuell nicht benutzt)
     Brakingmodel: Lambda 
-    braking_type: air_brake_block #the braking force is applied via a pressurized air duct at the block/wheel surface #source: https://gueterwagenkatalog.dbcargo.com/katalog/nach-gattung/f-offene-schuettgutwagen/Facs-124-5832362
-    diameter_brake_cylinder: 406 #in mm, only one, so 4 wheels are not slowed
-    brakinglevel: 29
+    Brakingmode: service brake #full service brake / emergency brake, wie wählen?
 
 vehicles:
   - name: "Facs 124"  # source: https://dybas.de/dybas/gw/gw_f_1/g124.html
@@ -23,7 +21,18 @@ vehicles:
     picture: https://dybas.de/dybas/gw/gw_f_1/image/124_0042.jpg
     vehicle_type: freight # "freight", "passenger", "traction unit" or "multiple unit"
     
-  
+    #braking parameters
+    b_type: air_brake_block #the braking force is applied via a pressurized air duct at the block/wheel surface #source: https://gueterwagenkatalog.dbcargo.com/katalog/nach-gattung/f-offene-schuettgutwagen/Facs-124-5832362
+    b_cylinder_d: 406 #in mm, only one, so 4 wheels are not slowed
+    b_cylinder_pressure: 3.5 #in bar (Abhängig von Bremstellung oder Brakingmode)
+    b_efficiency: 6 #default value
+    b_translation: 0.95 #default value
+    b_cylinder_featherforce: # in [kN]
+    b_linkageforce: #in [kN]
+    b_rB: # in [mm] for b_type: disk only
+    wheel_d:  # in [mm] fpr b_type: disk only
+    braked_axle_count: 2 #default value
+    running_axis_count: 0 #default value
 
     length: 19.04    # source: https://dybas.de/dybas/gw/gw_f_1/g124.html
     mass: 25.00      # source: https://dybas.de/dybas/gw/gw_f_1/g124.html
@@ -40,8 +49,21 @@ vehicles:
     UUID: 48b99596-98b2-40c8-b31a-3f9266013803
     picture: https://commons.wikimedia.org/wiki/File:DB_294_-_594_side_view.jpg
     vehicle_type: traction unit # "freight", "passenger", "traction unit" or "multiple unit"
-    power_type: diesel          # "diesel", "electric", or "steam"
-    #braking_type: air_brake_block  #the braking force is applied via a pressurized air duct at the block/wheel surface #source: https://de.wikipedia.org/wiki/DB-Baureihe_V_90
+    power_type: diesel          # "diesel", "electric", or "steam" 
+    #braking parameters
+    b_type: air_brake_block #the braking force is applied via a pressurized air duct at the block/wheel surface #source: https://gueterwagenkatalog.dbcargo.com/katalog/nach-gattung/f-offene-schuettgutwagen/Facs-124-5832362
+    b_cylinder_d: 406 #in mm, only one, so 4 wheels are not slowed
+    b_cylinder_pressure: 3.5 #in bar (Abhängig von Bremstellung oder Brakingmode)
+    b_efficiency: 6 #default value
+    b_translation: 0.95 #default value
+    b_cylinder_featherforce: # in [kN]
+    b_linkageforce: #in [kN]
+    b_rB: # in [mm] for b_type: disk only
+    wheel_d:  # in [mm] fpr b_type: disk only
+    braked_axle_count: 0 #default value
+    running_axis_count: 0 #default value
+    braked_traction_axis_count: 6 #source?
+
 
     length: 14.32   # source: https://de.wikipedia.org/wiki/DB-Baureihe_V_90
     mass: 80        # source: https://de.wikipedia.org/wiki/DB-Baureihe_V_90

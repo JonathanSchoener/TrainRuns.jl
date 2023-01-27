@@ -606,6 +606,7 @@ function Train(file, type = :YAML)
         ξ_train = ξ_loco
     end
 
+    
 
      
     Brh = train.data["Brh"]
@@ -618,11 +619,6 @@ function Train(file, type = :YAML)
     B_v_pairs[:,1] ./= 3.6                    # convert km/h to m/s
     B_v_pairs = tuple.(eachcol(B_v_pairs)...) # convert each row to tuples
 
-
-    if Brakingmodel=="Lambda"
-        train["Brh"]
-
-    end
 
 
     Train(
