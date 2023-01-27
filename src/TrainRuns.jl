@@ -19,6 +19,7 @@ trainrun, Train, Path, Settings
 ## global variables
 global g      = 9.80665  # acceleration due to gravity (in m/s^2)
 global μ      = 0.2      # friction as constant, TODO: implement as function
+global μ_braking  = 0.12     # 0.12 für DB (Stellung G/P) ODER 0.15 für GG-klötze sowie DB in Stellung R ODER 0.18 für el. und hydrody. Bremse
 global Δv_air = 15.0/3.6 # coefficient for velocitiy difference between train and outdoor air (in m/s)
 
 ## include package files
