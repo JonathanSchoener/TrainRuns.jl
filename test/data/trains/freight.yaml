@@ -8,11 +8,12 @@ trains:
     formation: [DB_V90,Facs124,Facs124,Facs124,Facs124,Facs124,Facs124,Facs124,Facs124,Facs124,Facs124]
      #Brh_empty: 99 #Bremsstellung G #source http://www.hammerschwinger.de/app/index.htm  #Screenshot of the Calculation: https://i.imgur.com/rjJXFqA.png 
     #Brh_full: 61 #Bremsstellung G #source http://www.hammerschwinger.de/app/index.htm  #Screenshot of the Calculation: https://i.imgur.com/u0bBMCk.png
-    Brh: 99
+    Braked Weight Percentage: 99 #if 0, then its a Gamma-Train, if != 0 then its a Lambda-Train
     #source for braking weight of the Facs124 used in the calculation app: https://zusiwiki.echoray.de/wiki/Sammlung_von_Bremsgewichten#Bremsgewichte
     BrakePosition: G/P/R #aber bereits in Brh mit einbezogen (Brh wird aktuell nicht benutzt)
-    Brakingmodel: Lambda 
+    #Braking: Lambda #kann auch durch Brh gegeben sein, wenn Brh = 0, dann ist es Gamma
     Brakingmode: service brake #full service brake / emergency brake, wie wählen?
+    Blending_Mode: #Wie?
 
 vehicles:
   - name: "Facs 124"  # source: https://dybas.de/dybas/gw/gw_f_1/g124.html

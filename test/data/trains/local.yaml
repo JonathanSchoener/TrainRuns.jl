@@ -6,9 +6,12 @@ trains:
   - name: Regional Train
     id: RB50-1
     formation: [DB_BR_642]
-    Brakingmodel: Lambda
-    braking_type: air_brake_disk
-    Brh: 0
+    Braked Weight Percentage: 0 #if 0, then its a Gamma-Train, if != 0 then its a Lambda-Train
+    #source for braking weight of the Facs124 used in the calculation app: https://zusiwiki.echoray.de/wiki/Sammlung_von_Bremsgewichten#Bremsgewichte
+    BrakePosition: G/P/R #aber bereits in Brh mit einbezogen (Brh wird aktuell nicht benutzt)
+    Braking: Lambda 
+    Brakingmode: service brake #full service brake / emergency brake, wie wählen?
+    Blending_Mode: #wieso, weshalb, warum kann man dies umsetzen?
 
 vehicles:
   - name: Siemens Desiro Classic # source: https://de.wikipedia.org/wiki/Siemens_Desiro_Classic
@@ -18,13 +21,28 @@ vehicles:
     power_type: diesel             # source: https://de.wikipedia.org/wiki/Siemens_Desiro_Classic
     vehicle_type: multiple unit    # source: https://de.wikipedia.org/wiki/Siemens_Desiro_Classic
 
+    #braking parameters
+    b_type: ep_air_brake_disc #the braking force is applied via a pressurized air duct at the block/wheel surface #source: https://gueterwagenkatalog.dbcargo.com/katalog/nach-gattung/f-offene-schuettgutwagen/Facs-124-5832362
+    b_type2: hydro_brake
+    b_cylinder_d: 406 #in mm, only one, so 4 wheels are not slowed
+    b_cylinder_pressure: 3.5 #in bar (Abhängig von Bremstellung oder Brakingmode)
+    b_efficiency: 6 #default value
+    b_translation: 0.95 #default value
+    b_cylinder_featherforce: # in [kN]
+    b_linkageforce: #in [kN]
+    b_rB: # in [mm] for b_type: disk only
+    wheel_d:  # in [mm] fpr b_type: disk only
+    braked_axle_count: 0 #default value
+    running_axis_count: 0 #default value
+    braked_traction_axis_count: 6 #source?
+    a_braking: -0.4253    #
+
     length: 41.7          # source: https://de.wikipedia.org/wiki/Siemens_Desiro_Classic
     mass: 68.0            # source: https://de.wikipedia.org/wiki/Siemens_Desiro_Classic
     load_limit: 20.0      # source: https://de.wikipedia.org/wiki/Siemens_Desiro_Classic
     mass_traction: 45.333 # proportionately to the number of axles: 4 to 2, see: https://de.wikipedia.org/wiki/Siemens_Desiro_Classic)
     speed_limit: 120      # source: https://de.wikipedia.org/wiki/Siemens_Desiro_Classic
-    a_braking: -0.4253    #
-
+    
     # coefficients for the vehicle resistance
     rotation_mass: 1.08     # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 13 for "Zug, überschlägliche Berechnung"
     base_resistance: 3.0    # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 151 for "f_WL0" -> 2.5 ‰ to 3.5 ‰

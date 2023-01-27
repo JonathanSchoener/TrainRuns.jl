@@ -5,10 +5,16 @@ schema_version: "2022.05"
 trains:
   - name: "Intercity 2 (Traxx P160 AC2 + double deck coaches)"  # (source: https://de.wikipedia.org/wiki/Bombardier_Twindexx_Vario#Intercity_2 and https://de.wikipedia.org/wiki/Intercity_2_(Deutsche_Bahn))
     id: IC1011
-    formation: [Bombardier_Traxx_2_P160,DABpza68,DABpza68,DABpza68,DABpza68,DABpza668]
-    Brakingmodel: Lambda 
-    Brh: 201 #source http://www.hammerschwinger.de/app/index.htm  #calculation:  https://i.imgur.com/0dyRFT0.png and https://i.imgur.com/veaoxcT.png
-    braking_type: air_brake_disk
+    formation: [Bombardier_Traxx_2_P160,DABpza68,DABpza68,DABpza68,DABpza68,DABpza668] 
+    Braked Weight Percentage: 201 #source http://www.hammerschwinger.de/app/index.htm  #calculation:  https://i.imgur.com/0dyRFT0.png and https://i.imgur.com/veaoxcT.png
+    #if 0, then its a Gamma-Train, if != 0 then its a Lambda-Train
+    #source for braking weight of the Facs124 used in the calculation app: https://zusiwiki.echoray.de/wiki/Sammlung_von_Bremsgewichten#Bremsgewichte
+    BrakePosition: G/P/R #aber bereits in Brh mit einbezogen (Brh wird aktuell nicht benutzt)
+    Braking: Lambda #über Brh?
+    Brakingmode: service brake #full service brake / emergency brake, wie wählen?
+    Blending_Mode: #wieso, weshalb, warum kann man dies umsetzen?
+            #the air brake is only for additional usage, the electrical brake is preffered because of a fast and simultaneous tightening of the disc brakes 
+
 
 vehicles:
   - name: "DBpbzfa 668.2"  # source: https://de.wikipedia.org/wiki/Bombardier_Twindexx_Vario
@@ -16,6 +22,20 @@ vehicles:
     UUID: a186ea2c-daeb-429b-8254-89e0d6700519
     picture: https://commons.wikimedia.org/wiki/File:Bombardier_IC_Doppelstocksteuerwagen_Innotrans_2014.JPG
     vehicle_type: passenger # "freight", "passenger", "traction unit" or "multiple unit"
+
+    #braking parameters source for most: https://www.static.tu.berlin/fileadmin/www/10002264/ews/2020-sose/2020-05-11-folien.pdf p. 43
+    b_type: ep_air_brake_disc 
+    b_cylinder_d: 133 #in mm
+    b_cylinder_pressure: 4.4 #in bar source above
+    b_efficiency: 8 #default value
+    b_translation: 0.95 #default value
+    b_cylinder_featherforce: 0,5 # in [kN]
+    b_linkageforce: 0 #in [kN] not used for disk brakes after Wende p. 227 Equation (5.5)
+    b_rB: 300 # in [mm] for b_type: disk only
+    wheel_d: 920 # in [mm] for b_type: disk only
+    braked_axle_count: 2 #default value correct????
+    running_axis_count: 0 #default value
+    braked_traction_axis_count: 0 #source?
 
     length: 27.27    # source: https://de.wikipedia.org/wiki/Bombardier_Twindexx_Vario
     mass: 58.00      # source: https://de.wikipedia.org/wiki/Bombardier_Twindexx_Vario
@@ -48,8 +68,24 @@ vehicles:
     rolling_resistance: 0.715 # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 153 for "Doppelstockgliederzüge"
     air_resistance: 3.64      # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 153 for "Doppelstockgliederzüge"
 
+   #braking parameters source for most: https://www.static.tu.berlin/fileadmin/www/10002264/ews/2020-sose/2020-05-11-folien.pdf p. 43
+    b_type: ep_air_brake_disc #source https://www.deutsche-reisezugwagen.de/wagendaten/687-brye-dapza/
+    b_cylinder_count: 1 #source above
+    b_cylinder_d: 133 #in mm
+    b_cylinder_pressure: 4.4 #in bar source above
+    b_efficiency: 8 #default value
+    b_translation: 0.95 #default value
+    b_cylinder_featherforce: 0.5 # in [kN]
+    b_linkageforce: 0 #in [kN] not used for disk brakes after Wende p. 227 Equation (5.5)
+    b_rB: 300 # in [mm] for b_type: disk only
+    wheel_d: 920 # in [mm] for b_type: disk only
+    braked_axle_count: 0 #default value 
+    running_axis_count: 0 #default value
+    braked_traction_axis_count: 4 #source?
+    b_disk_count: ?? #source
+
     
-    #braking_system: air_brake_disc #source https://www.deutsche-reisezugwagen.de/wagendaten/687-brye-dapza/
+   
 
   - name: "Bombardier Traxx 2 (P160)"  # source: https://en.wikipedia.org/wiki/Bombardier_TRAXX#TRAXX_P160_AC2
     id: Bombardier_Traxx_2_P160
@@ -57,6 +93,24 @@ vehicles:
     picture: https://commons.wikimedia.org/wiki/File:146_560-8_(Flickr_26502799445).jpg
     vehicle_type: traction unit # "freight", "passenger", "traction unit" or "multiple unit"
     power_type: electric        # "diesel", "electric", or "steam"
+
+    #braking parameters source for most: https://www.static.tu.berlin/fileadmin/www/10002264/ews/2020-sose/2020-05-11-folien.pdf p. 43
+    b_type: ep_air_brake_disc #https://de.wikipedia.org/wiki/Bombardier_Traxx#Bremsen
+    b_type_traction: electrical_brake #!
+    b_disk_count: 2 #for each axis : source https://docplayer.org/32202339-Die-bahn-triebfahrzeuge-bedienen-baureihe-146-1-seite-1-von-46.html p. 7
+    b_cylinder_count: 8 #source above
+    b_cylinder_d: WEI? ICH NICHT #in mm
+    b_cylinder_pressure: 4.4 ???? #in bar source above
+    b_efficiency: 8 ???? #default value
+    b_translation: 0.95 ???? #default value
+    b_cylinder_featherforce: 0,5 ???? # in [kN]
+    b_linkageforce: 0 ???? #in [kN] not used for disk brakes after Wende p. 227 Equation (5.5)
+    b_rB: 300 ???? # in [mm] for b_type: disk only
+    wheel_d: 920 ???? # in [mm] for b_type: disk only
+    braked_axle_count: 0 #default value 
+    running_axis_count: 0 #default value
+    braked_traction_axis_count: 4 #source?
+
 
     length: 18.9      # source: https://de.wikipedia.org/wiki/Bombardier_Traxx#P160_AC2
     mass: 85          # source: https://de.wikipedia.org/wiki/Bombardier_Traxx#P160_AC2
@@ -66,9 +120,6 @@ vehicles:
     rotation_mass: 1.09   # source: "Railway Timetabling & Operations" by Hansen, et al., 2014, p. 71 for the traction unit
     base_resistance: 2.5  # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 151 for "4-achsige Diesellokomot." -> 2.2 ‰ to 3.5 ‰
     air_resistance: 6.0 # source: "Fahrdynamik des Schienenverkehrs" by Wende, 2003, p. 151 for "4-achsig, eckige Kopfform" with "Stromabnehmer" -> 5000 N to 6000 N; modified for the used formula
-
-    #the air brake is only for additional usage, the electrical brake is preffered because of a fast and simultaneous tightening of the disc brakes 
-    braking_system: [air_brake_disc, electrical_brake] #source: https://de.wikipedia.org/wiki/Bombardier_Traxx#Bremsen
 
     tractive_effort:
       - [0.0, 300000]
