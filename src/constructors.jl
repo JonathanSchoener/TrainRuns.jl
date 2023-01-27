@@ -234,8 +234,8 @@ function Path(file, type = :YAML)
     end #if type
 
     ## process characteristic sections
-    sort!(tmp_sec, by = x -> x[1])
-    for row in 2:length(tmp_sec)
+    sort!(tmp_sec, by = x -> x[1]) #sortiert m Punkte aufsteigend
+    for row in 2:length(tmp_sec)  #legt alle CS als Dict an mit den zugehöriegen Werten
         s_start = tmp_sec[row-1][1]     # first point of the section (in m)
         s_end   = tmp_sec[row][1]       # first point of the next section (in m)
         v_limit = tmp_sec[row-1][2]/3.6 # paths speed limt (in m/s)
@@ -251,7 +251,7 @@ function Path(file, type = :YAML)
     # s_end in last entry defines the path's ending
 
     ## process points of interest
-    if POI_PRESENT
+    if POI_PRESENT 
         sort!(tmp_points, by = x -> x[1])
         for elem in tmp_points
             station = elem[1]     # station in m
@@ -265,7 +265,7 @@ function Path(file, type = :YAML)
         end #for elem
     end #if !isempty(points)
 
-    Path(name, id, uuid, poi, sections)
+    Path(name, id, uuid, poi, sections) #konvertiert YAML-Datei in Julia-Code
 
 end #function Path() # outer constructor
 
@@ -490,9 +490,9 @@ function Train(file, type = :YAML)
     Base.length(trains) > 1 ? println("WARNING: the loaded file contains more than one train. Using only the first!") : nothing
     Base.length(trains) == 0 ? error("No train present in file '$file'") : nothing
     train = trains[1]
-    used_vehicles = unique(train["formation"])
+    used_vehicles = unique(train["formation"]) #besteht aus den einzigartigen Arten (Beispiel V90 und Facs Güterwagen)
 
-    included_vehicles = []
+    included_vehicles = [] #besteht aus den id's des gesamten Zugs (11 Stück für freight)
     for vehicle in data["vehicles"]
         push!(included_vehicles,vehicle["id"])
     end
@@ -505,13 +505,13 @@ function Train(file, type = :YAML)
     ## gather the count of vehicles and usage in the formation
     vehicles = NamedTuple[]
     for vehicle in data["vehicles"]
-        if vehicle["id"] in used_vehicles
-            n = count(==(vehicle["id"]),train["formation"])
+        if vehicle["id"] in used_vehicles #alle ids des Zuges
+            n = count(==(vehicle["id"]),train["formation"]) #zählt die Zahl der true Rückgaben
             type = vehicle["vehicle_type"]
             type == "traction unit" || type == "multiple unit" ? propulsion    = true       : propulsion = false
             type == "passenger"     || type == "multiple unit" ? transportType = :passenger : nothing
-            push!(vehicles, (data=vehicle, n=n, propulsion=propulsion) )
-        end
+            push!(vehicles, (data=vehicle, n=n, propulsion=propulsion) ) 
+        end #legt Tupel für jedes Fzg an mit Nr und Antrieb
     end
 
     ## set the variables in "train"
@@ -556,7 +556,7 @@ function Train(file, type = :YAML)
     haskey(loco, "air_resistance")     ? f_Rt2  = loco["air_resistance"]              : nothing
     haskey(loco, "mass_traction")      ? m_td   = loco["mass_traction"] * 1000        : m_td = m_t
     haskey(loco, "rotation_mass")      ? ξ_loco = loco["rotation_mass"]               : nothing
-    m_tc = m_loco- m_td
+    m_tc = m_loco- m_td #masse-Traktionsmasse ?
     haskey(loco, "tractive_effort")    ? F_v_pairs = loco["tractive_effort"] : F_v_pairs = [ [0.0, m_td * g * μ],[v_limit*3.6, m_td * g * μ] ]
     F_v_pairs = reduce(hcat,F_v_pairs)'       # convert to matrix
     F_v_pairs[:,1] ./= 3.6                    # convert km/h to m/s

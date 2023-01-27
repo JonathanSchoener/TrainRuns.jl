@@ -46,12 +46,14 @@ xxx.xx # in seconds
 """
 function trainrun(train::Train, path::Path, settings=Settings()::Settings)
     # prepare the input data
-    (characteristicSections, pointsOfInterest) = determineCharacteristics(path, train, settings)
-        # TODO settings.outputDetail == :verbose && println("The characteristics haven been determined.")
+    (characteristicSections, pointsOfInterest) = determineCharacteristics(path, train, settings) 
+    # points_of_interest: [ station in m,                name,   front or rear ] 
+    # characteristic_sections: [ station in m, speed limit in km/h, resistance in ‰ ]
+    # Funktion aufrufen: aus calc 
 
     # calculate the train run with the minimum running time
     drivingCourse = calculateMinimumRunningTime(characteristicSections, settings, train)
-        # TODO settings.outputDetail == :verbose && println("The driving course for the shortest running time has been calculated.")
+       
 
     # accumulate data and create an output dictionary
     output = createOutput(settings, drivingCourse, pointsOfInterest)
