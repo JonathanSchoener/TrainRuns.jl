@@ -162,7 +162,7 @@ end #function calculateTractiveEffort
 
 function calculateBrakingEffort(a_system::String, v::AbstractFloat, B_modell = "String")
  if a_system == "air_brake_disk" || B_modell == Lambda
-
+#kann genauso aufgebaut sein wie tractive effort 
     v_ende = v 
     
  return BrakingEffortVelociyPairs[end][2]
@@ -212,8 +212,10 @@ function calculateForces!(supportPoint::Dict,  CSs::Vector{Dict}, csId::Integer,
     # calculate tractive effort
     if bsType == "braking" || bsType == "coasting" || bsType == "halt"
         supportPoint[:F_T] = 0.0
-    elseif bsType == "cruising"
+            elseif bsType == "cruising"
         supportPoint[:F_T] = min(max(0.0, supportPoint[:F_R]), calculateTractiveEffort(supportPoint[:v], train.tractiveEffort))
+            elseif bsType == "braking"
+                supportPoint[:F_B] = calculateBrakingEffort(supportPoint[:v], train.brakingEffort)
     else # bsType == "accelerating" || bsType == "diminishing" || 'default'
         supportPoint[:F_T] = calculateTractiveEffort(supportPoint[:v], train.tractiveEffort)
     end

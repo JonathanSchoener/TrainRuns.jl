@@ -194,6 +194,7 @@ function brakingDistance(v_start::Real, v_end::Real, a_braking::Real, approxLeve
     # v_start: velocity at the start of braking (in m/s)
     # v_end: target velocity at the end of braking (in m/s)
     # a_braking: constant braking acceleration (in m/s^2)
+    
     s_braking = (v_end^2 - v_start^2) /2 /a_braking             # braking distance (in m)
     # TODO: also possible: Δs_with_Δv(v_end-v_start, a_braking, v_start)
 #    return max(0.0, ceil(s_braking, digits=approxLevel))         # ceil is used to be sure that the train stops at s_exit in spite of rounding errors
