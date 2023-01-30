@@ -28,13 +28,13 @@ vehicles:
     b_cylinder_pressure: 3.5 #in bar (Abhängig von Bremstellung oder Brakingmode)
     b_efficiency: 6 #default value
     b_translation: 0.95 #default value
-    b_cylinder_featherforce: # in [kN]
-    b_linkageforce: #in [kN]
-    b_rB: # in [mm] for b_type: disk only
-    wheel_d:  # in [mm] fpr b_type: disk only
+    b_cylinder_featherforce: 1 # in [kN]
+    b_linkageforce: 1 #in [kN]
+    b_rB: # in [mm] diamenter of the brake pads of disk brakes
+    wheel_d:  # in [mm] diamenter of the brake pads of disk brakes    
     braked_axle_count: 0 #default value
-    running_axis_count: 0 #default value
-    braked_traction_axis_count: 6 #source?
+    running_axle_count: 0 #default value
+    braked_traction_axle_count: 6 #source?
     a_braking: -0.4253    #
 
     length: 41.7          # source: https://de.wikipedia.org/wiki/Siemens_Desiro_Classic

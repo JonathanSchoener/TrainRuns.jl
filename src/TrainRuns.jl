@@ -45,6 +45,11 @@ julia> trainrun(train, path)[end,:t]
 xxx.xx # in seconds
 ```
 """
+# example train = Train("test/data/trains/freight.yaml")
+# example path  = Path("test/data/paths/const.yaml")
+# settings = Settings("test/data/settings/points_of_interest.yaml")
+
+
 function trainrun(train::Train, path::Path, settings=Settings()::Settings)
     # prepare the input data
     (characteristicSections, pointsOfInterest) = determineCharacteristics(path, train, settings)

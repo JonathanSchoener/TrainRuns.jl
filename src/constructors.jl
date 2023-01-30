@@ -311,8 +311,13 @@ function Train(file, type = :YAML)
     F_v_pairs     = []            # [v in m/s, F_T in N]
     Brakingmodel  = :Lambda       # or Gamma
     BrakingEffort = []            # [v in m/s, B_T in N]
-    Brh           = 0             # if Lambda
-    braking_system= :air_brake_disk # dfs
+    braking_system= :[] #what default is the best?
+    BW_Percentage = 0          # Braked Weight Percentage for Lambda Trains
+    brake_position= "G" # or P or R 
+    brakingmode   = "service brake" #
+    
+
+
     
 
     ## load from file
@@ -654,7 +659,7 @@ function CharacteristicSections(path::Path, v_trainLimit::Real, s_trainLength::R
         end #if
     end #for
     push!(CSs, CharacteristicSection(s_csStart, path.sections[end], min(path.sections[end][:v_limit], v_trainLimit), s_trainLength, MS_poi))
-
+    
     return CSs
 end #function CharacteristicSections
 

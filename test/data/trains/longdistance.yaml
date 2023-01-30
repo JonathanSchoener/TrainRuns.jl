@@ -77,11 +77,11 @@ vehicles:
     b_translation: 0.95 #default value
     b_cylinder_featherforce: 0.5 # in [kN]
     b_linkageforce: 0 #in [kN] not used for disk brakes after Wende p. 227 Equation (5.5)
-    b_rB: 300 # in [mm] for b_type: disk only
-    wheel_d: 920 # in [mm] for b_type: disk only
+    b_rB: 300 # in [mm] diamenter of the brake pads of disk brakes
+    wheel_d: 920 # in [mm] diamenter of the brake pads of disk brakes
     braked_axle_count: 0 #default value 
-    running_axis_count: 0 #default value
-    braked_traction_axis_count: 4 #source?
+    running_axle_count: 0 #default value
+    braked_traction_axle_count: 4 #source?
     b_disk_count: ?? #source
 
     
@@ -108,8 +108,8 @@ vehicles:
     b_rB: 300 ???? # in [mm] for b_type: disk only
     wheel_d: 920 ???? # in [mm] for b_type: disk only
     braked_axle_count: 0 #default value 
-    running_axis_count: 0 #default value
-    braked_traction_axis_count: 4 #source?
+    running_axle_count: 0 #default value
+    braked_traction_axle_count: 4 #source?
 
 
     length: 18.9      # source: https://de.wikipedia.org/wiki/Bombardier_Traxx#P160_AC2

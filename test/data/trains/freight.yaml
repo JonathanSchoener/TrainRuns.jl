@@ -8,15 +8,15 @@ trains:
     formation: [DB_V90,Facs124,Facs124,Facs124,Facs124,Facs124,Facs124,Facs124,Facs124,Facs124,Facs124]
      #Brh_empty: 99 #Bremsstellung G #source http://www.hammerschwinger.de/app/index.htm  #Screenshot of the Calculation: https://i.imgur.com/rjJXFqA.png 
     #Brh_full: 61 #Bremsstellung G #source http://www.hammerschwinger.de/app/index.htm  #Screenshot of the Calculation: https://i.imgur.com/u0bBMCk.png
-    Braked Weight Percentage: 99 #if 0, then its a Gamma-Train, if != 0 then its a Lambda-Train
+    Brake_w_Perc: 99 #Braked Weight Percentage, if 0, then its a Gamma-Train
     #source for braking weight of the Facs124 used in the calculation app: https://zusiwiki.echoray.de/wiki/Sammlung_von_Bremsgewichten#Bremsgewichte
-    BrakePosition: G/P/R #aber bereits in Brh mit einbezogen (Brh wird aktuell nicht benutzt)
+    brake_position: G/P/R #aber bereits in Brh mit einbezogen (Brh wird aktuell nicht benutzt)
     #Braking: Lambda #kann auch durch Brh gegeben sein, wenn Brh = 0, dann ist es Gamma
     Brakingmode: service brake #full service brake / emergency brake, wie wählen?
-    Blending_Mode: #Wie?
-
+    Blending_Mode: #How to implement? Should be used in the constructor für combining the different braking systems to one B/v-Diagramm
+   
 vehicles:
-  - name: "Facs 124"  # source: https://dybas.de/dybas/gw/gw_f_1/g124.html
+   - name: "Facs 124"  # source: https://dybas.de/dybas/gw/gw_f_1/g124.html
     id: Facs124
     UUID: 30abe88d-5be7-4c9c-b6a2-61c6b0e9f9bc
     picture: https://dybas.de/dybas/gw/gw_f_1/image/124_0042.jpg
@@ -28,12 +28,12 @@ vehicles:
     b_cylinder_pressure: 3.5 #in bar (Abhängig von Bremstellung oder Brakingmode)
     b_efficiency: 6 #default value
     b_translation: 0.95 #default value
-    b_cylinder_featherforce: # in [kN]
-    b_linkageforce: #in [kN]
-    b_rB: # in [mm] for b_type: disk only
-    wheel_d:  # in [mm] fpr b_type: disk only
+    b_cylinder_featherforce: 1 # in [kN]
+    b_linkageforce: 1 #in [kN]
+    b_rB: 340 # in [mm] diamenter of the brake pads of disk brakes
+    wheel_d: 860 # in [mm] diamenter of the brake pads of disk brakes
     braked_axle_count: 2 #default value
-    running_axis_count: 0 #default value
+    running_axle_count: 2 #default value
 
     length: 19.04    # source: https://dybas.de/dybas/gw/gw_f_1/g124.html
     mass: 25.00      # source: https://dybas.de/dybas/gw/gw_f_1/g124.html
@@ -51,104 +51,22 @@ vehicles:
     picture: https://commons.wikimedia.org/wiki/File:DB_294_-_594_side_view.jpg
     vehicle_type: traction unit # "freight", "passenger", "traction unit" or "multiple unit"
     power_type: diesel          # "diesel", "electric", or "steam" 
-    #braking parameters
-    b_type: air_brake_block #the braking force is applied via a pressurized air duct at the block/wheel surface #source: https://gueterwagenkatalog.dbcargo.com/katalog/nach-gattung/f-offene-schuettgutwagen/Facs-124-5832362
-    b_cylinder_d: 406 #in mm, only one, so 4 wheels are not slowed
-    b_cylinder_pressure: 3.5 #in bar (Abhängig von Bremstellung oder Brakingmode)
-    b_efficiency: 6 #default value
-    b_translation: 0.95 #default value
-    b_cylinder_featherforce: # in [kN]
-    b_linkageforce: #in [kN]
-    b_rB: # in [mm] for b_type: disk only
-    wheel_d:  # in [mm] fpr b_type: disk only
-    braked_axle_count: 0 #default value
-    running_axis_count: 0 #default value
-    braked_traction_axis_count: 6 #source?
     
-    braking_effort:
-      - [0.0, 0]
-      - [1.0, 0]
-      - [2.0, 0]
-      - [3.0, 0]
-      - [4.0, 0]
-      - [5.0, 0]
-      - [6.0, 0]
-      - [7.0, 0]
-      - [8.0, 0]
-      - [9.0, 0]
-      - [10.0, 0]
-      - [11.0, 0]
-      - [12.0, 0]
-      - [13.0, 0]
-      - [14.0, 0]
-      - [15.0, 0]
-      - [16.0, 0]
-      - [17.0, 0]
-      - [18.0, 0]
-      - [19.0, 0]
-      - [20.0, 0]
-      - [21.0, 0]
-      - [22.0, 0]
-      - [23.0, 0]
-      - [24.0, 0]
-      - [25.0, 0]
-      - [26.0, 0]
-      - [27.0, 0]
-      - [28.0, 0]
-      - [29.0, 0]
-      - [30.0, 0]
-      - [31.0, 0]
-      - [32.0, 0]
-      - [33.0, 0]
-      - [34.0, 0]
-      - [35.0, 0]
-      - [36.0, 0]
-      - [37.0, 0]
-      - [38.0, 0]
-      - [39.0, 57400]
-      - [40.0, 55830]
-      - [41.0, 54300]
-      - [42.0, 52820]
-      - [43.0, 51390]
-      - [44.0, 50000]
-      - [45.0, 48660]
-      - [46.0, 48080]
-      - [47.0, 47220]
-      - [48.0, 46380]
-      - [49.0, 45550]
-      - [50.0, 44730]
-      - [51.0, 43930]
-      - [52.0, 43140]
-      - [53.0, 42370]
-      - [54.0, 41610]
-      - [55.0, 40870]
-      - [56.0, 40140]
-      - [57.0, 39430]
-      - [58.0, 38730]
-      - [59.0, 38040]
-      - [60.0, 37370]
-      - [61.0, 36720]
-      - [62.0, 36070]
-      - [63.0, 35450]
-      - [64.0, 34830]
-      - [65.0, 34230]
-      - [66.0, 33650]
-      - [67.0, 33080]
-      - [68.0, 32520]
-      - [69.0, 31980]
-      - [70.0, 31450]
-      - [71.0, 30940]
-      - [72.0, 30440]
-      - [73.0, 29960]
-      - [74.0, 29490]
-      - [75.0, 29030]
-      - [76.0, 28590]
-      - [77.0, 28170]
-      - [78.0, 27760]
-      - [79.0, 27360]
-      - [80.0, 26980]
-
-
+    #braking parameters
+    b_type: air_brake_block      #the braking force is applied via a pressurized air duct at the block/wheel surface #source: https://gueterwagenkatalog.dbcargo.com/katalog/nach-gattung/f-offene-schuettgutwagen/Facs-124-5832362
+    b_cylinder_d: 406            #in mm, only one, so 4 wheels are not slowed
+    b_cylinder_pressure: 3.5     #in bar (Abhängig von Bremstellung oder Brakingmode)
+    b_efficiency: 6              #default value
+    b_translation: 0.95          #default value
+    b_cylinder_featherforce: 1   #in [kN]
+    b_linkageforce: 1            #in [kN]
+    b_rB:                        # in [mm] for b_type: disk only (could be deleted?)
+    wheel_d:                     # in [mm] fpr b_type: disk only
+    braked_axle_count: 0         #default value
+    running_axle_count: 0        #default value
+    braked_traction_axle_count: 6 #source?
+    
+  
     length: 14.32   # source: https://de.wikipedia.org/wiki/DB-Baureihe_V_90
     mass: 80        # source: https://de.wikipedia.org/wiki/DB-Baureihe_V_90
     mass_traction: 80 # in t # mass on driving axles of the traction unit

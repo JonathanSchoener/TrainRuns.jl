@@ -59,7 +59,8 @@ struct Train
 
     #braking parameters
     brakingEffort::Vector{Tuple{Real, Real}}   #  [v in m/s, F_B in N]
-    Brakingmodel::String
+    λ% :: Real #default 0, if 0 then its a Gamma Train, otherwise Lambda 
+    brakePosition :: Symbol #others: P or R
     #todo: formal anpassen wie das Objekt Train geladen wird
 
 end #struct Train
